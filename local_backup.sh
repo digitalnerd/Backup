@@ -17,7 +17,7 @@ echo "// BEGIN -- $TIME"  >> $LOGFILE
 
 #mysqldump -u $USER -p$PASS $DB | ${GZIP} -c > ${DB}.${TIME}.sql.gz
 
-# Дамп БД
+# Dump database
 echo "[*-----] dumping '$DB' database..." >> $LOGFILE
 mysqldump -u $USER -p$PASS $DB > ${DB}.${TIME}.sql
 if [[ $? != 0 ]]; then
@@ -27,7 +27,7 @@ else
     echo "[**----] done." >> $LOGFILE
 fi
 
-# Создание tar-бокса
+# Creating tarball
 echo "[***---] creating gz file..." >> $LOGFILE
 ${GZIP} -f ${DB}.${TIME}.sql
 if [[ $? != 0 ]]; then
