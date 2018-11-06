@@ -1,14 +1,14 @@
 #!/bin/bash
 
-USER=
-PASS=
-DB=
+USER=user
+PASS=pass
+DB=example
 GZIP=$(whereis gzip | cut -d ' ' -f 2)
 TIME=$(date +'%d%m%Y')
 ###DST=/home/backup/
 LOGFILE=/var/log/backup.log
 DST=/home/backup/BACKUP/
-BACKUP_SERVER=
+BACKUP_SERVER=10.10.10.10
 
 cd /home/backup/
 
