@@ -12,29 +12,29 @@ BACKUP_SERVER=10.10.10.10
 
 cd /home/backup/
 
-echo >> $LOGFILE
-echo "// BEGIN -- $TIME"  >> $LOGFILE
+echo >> ${LOGFILE}
+echo "// BEGIN -- ${TIME}"  >> ${LOGFILE}
 
 #mysqldump -u $USER -p$PASS $DB | ${GZIP} -c > ${DB}.${TIME}.sql.gz
 
 # Dump database
-echo "[*-----] dumping '$DB' database..." >> $LOGFILE
-mysqldump -u $USER -p$PASS $DB > ${DB}.${TIME}.sql
+echo "[*-----] dumping '${DB}' database..." >> ${LOGFILE}
+mysqldump -u ${USER} -p${PASS} ${DB} > ${DB}.${TIME}.sql
 if [[ $? != 0 ]]; then
-    echo "[*-----] dumping failed!" >> $LOGFILE
+    echo "[*-----] dumping failed!" >> ${LOGFILE}
     exit 1
 else
-    echo "[**----] done." >> $LOGFILE
+    echo "[**----] done." >> ${LOGFILE}
 fi
 
 # Creating tarball
-echo "[***---] creating gz file..." >> $LOGFILE
+echo "[***---] creating gz file..." >> ${LOGFILE}
 ${GZIP} -f ${DB}.${TIME}.sql
 if [[ $? != 0 ]]; then
-    echo "[***---] FAILED!" >> $LOGFILE
+    echo "[***---] FAILED!" >> ${LOGFILE}
     exit 1
 else
-    echo "[****--] done." >> $LOGFILE
+    echo "[****--] done." >> ${LOGFILE}
 fi
 
 # Копирование БД на сервер бэкапа
@@ -47,7 +47,7 @@ fi
 ##    echo "[******] done." >> $LOGFILE
 ##fi
 
-echo "// END -- $TIME"  >> $LOGFILE
+echo "// END -- ${TIME}"  >> ${LOGFILE}
 
 
 
